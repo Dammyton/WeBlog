@@ -10,20 +10,20 @@
           <i class="fas fa-3x fa-clipboard-check"></i>
         </div>
         <div class="col-sm-11">
-          <h5>{{post.title}}</h5>
+          <h5>{{getPost.title}}</h5>
           <i class="fas fa-comments"></i>
           <span>
             <a class="comments" href="#comments"> {{getComments.length}} Comments</a>
           </span>
         </div>
       </div>
-      <p class="mt-4">{{post.body}}</p>
+      <p class="mt-4">{{getPost.body}}</p>
     </div>
 
     <!-- Comments -->
     <div id="comments">
       <div class="container mb-5">
-        <h4 class="pt-4">{{getComments.length}} Comments on "{{post.title}}"</h4>
+        <h4 class="pt-4">{{getComments.length}} Comments on "{{getPost.title}}"</h4>
         <b-card
           class="mb-2"
           bg-variant="success"
@@ -44,6 +44,29 @@
         </b-card>
       </div>
     </div>
+
+    <!-- Add Comments -->
+    <div class="container mb-5">
+      <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+          <h4>Add a new comment</h4>
+          <div class="add_comment">
+            <form action="">
+              <input type="text" placeholder="Name" class="form-control mb-2" v-model="mycomment.name" required>
+              <input type="email" name="email" class="form-control mb-2"  v-model="mycomment.email"  placeholder="Email" required>
+              <textarea name="body" cols="30" class="form-control mb-2"  rows="5" v-model="mycomment.body"  placeholder="Add Comment" requireds></textarea>
+              <button  @click="submitForm" class="btn-success">Add Comment</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -56,13 +79,37 @@ export default {
   components: {
     breadcrumb,
   },
+  data (){
+    return{
+      mycomment:{
+        name: '',
+        email:  '',
+        body: ''
+      },
+    }
+  },
   props: ["post"],
   created() {
-    this.$store.dispatch("loadComments", { id: this.post.id });
+    this.$store.dispatch('loadPost', { id: this.$route.params.id});
+    this.$store.dispatch("loadComments", { id: this.$route.params.id});
   },
   computed: {
-    ...mapGetters(["getComments"]),
+    ...mapGetters([
+      "getComments",
+      "getPost"
+    ]),
   },
+  methods: {
+    submitForm() {
+      if(this.mycomment === '') {
+        return false
+      }
+        this.$store.commit("addComment", {
+          e: this.mycomment,
+        });
+        this.mycomment = "";
+    },
+  }
 };
 </script>
 

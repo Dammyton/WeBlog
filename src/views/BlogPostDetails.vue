@@ -57,7 +57,7 @@
             <form action="">
               <input type="text" placeholder="Name" class="form-control mb-2" v-model="mycomment.name" required>
               <input type="email" name="email" class="form-control mb-2"  v-model="mycomment.email"  placeholder="Email" required>
-              <textarea name="body" cols="30" class="form-control mb-2"  rows="5" v-model="mycomment.body"  placeholder="Add Comment" requireds></textarea>
+              <textarea name="body" cols="30" class="form-control mb-2"  rows="5" v-model="mycomment.body"  placeholder="Add Comment" required></textarea>
               <button  @click="submitForm" class="btn-success">Add Comment</button>
             </form>
           </div>

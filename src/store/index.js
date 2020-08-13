@@ -37,11 +37,10 @@ export default new Vuex.Store({
       state.comments = comments
     },
     addComment(state, e) {
-      if (e.e == ''){
+      if (e.e === ''){
         return false
       }
       state.comments.push(e.e)
-      console.log(state.comments,"c")
     },
   },
   actions: {

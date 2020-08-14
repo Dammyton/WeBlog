@@ -14,7 +14,7 @@
     <!--Footer Navbar -->
     <div>
       <b-navbar toggleable="sm" type="dark" variant="success" >
-        <a href="" class="ml-auto mr-auto footer p-1 mb-0"><i class="fas fa-copyright"></i> Desisgned by Dammyton</a>
+        <a href="" class="ml-auto mr-auto footer p-1 mb-0">Copyright <i class="fas fa-copyright"></i> 2020. Desisgned by Dammyton</a>
       </b-navbar>
     </div>
     <!-- End Footer Navbar -->

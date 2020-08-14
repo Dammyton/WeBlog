@@ -10,14 +10,14 @@
           <i class="fas fa-3x fa-clipboard-check"></i>
         </div>
         <div class="col-sm-11">
-          <h5>{{getPost.title}}</h5>
+          <h4>{{getPost.title}}</h4>
           <i class="fas fa-comments"></i>
           <span>
             <a class="comments" href="#comments"> {{getComments.length}} Comments</a>
           </span>
         </div>
       </div>
-      <p class="mt-4">{{getPost.body}}</p>
+      <p class="mt-4">{{getPost.body}} {{getPost.body}} {{getPost.body}} {{getPost.body}}</p>
     </div>
 
     <!-- Comments -->
@@ -101,13 +101,14 @@ export default {
   },
   methods: {
     submitForm() {
-      if(this.mycomment === '') {
-        return false
-      }
+      if(this.mycomment.name === '' && this.mycomment.email === ''  && this.mycomment.body === '') {
+          return false
+      } else {
         this.$store.commit("addComment", {
           e: this.mycomment,
         });
         this.mycomment = "";
+      }
     },
   }
 };
